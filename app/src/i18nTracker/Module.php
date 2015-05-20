@@ -28,7 +28,8 @@ class Module
 	{
 		$rp = $this->routepath;
 
-		$router->get ('/track', 'i18nTracker\Controllers\Tracker@track');
+		$router->get ('/projects/{projectToken}/track', 'i18nTracker\Controllers\Projects@track');
+		$router->get ('/projects/{projectToken}/translate/{language}', 'i18nTracker\Controllers\Projects@translate');
 	}
 
 }

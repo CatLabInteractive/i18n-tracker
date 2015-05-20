@@ -1,0 +1,18 @@
+{
+  "name": "catlabinteractive/i18n-tracker",
+
+  "require": {
+	"CatLabInteractive/Neuron": "dev-master",
+	"ext-gd": "*"
+  },
+
+  "autoload": {
+	"psr-4" : {
+	  "i18nTracker\\" : "app/src/i18nTracker/"
+	}
+  },
+
+  "require-dev": {
+	"heroku/heroku-buildpack-php": "*"
+  }
+}

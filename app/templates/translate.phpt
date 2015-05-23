@@ -7,7 +7,7 @@
 		<?php foreach ($original as $entry) { ?>
 
 			<tr>
-				<td><?php echo $entry->getText (); ?></td>
+				<td style="width: 50%;"><?php echo $entry->getText (); ?></td>
 				<td>
 					<textarea class="form-control" id="entry_<?php echo $entry->getId (); ?>" data-entry-id="<?php echo $entry->getId (); ?>"><?php
 

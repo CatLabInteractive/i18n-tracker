@@ -8,6 +8,16 @@
 
 			<tr>
 				<td><?php echo $entry->getText (); ?></td>
+				<td>
+					<textarea class="form-control" id="entry_<?php echo $entry->getId (); ?>" data-entry-id="<?php echo $entry->getId (); ?>"><?php
+
+						$translation = $translated->getFromToken ($entry->getToken ());
+						if ($translation) {
+							echo $translation->getText ();
+						}
+
+					?></textarea>
+				</td>
 			</tr>
 
 		<?php } ?>

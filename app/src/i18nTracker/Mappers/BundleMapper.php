@@ -3,7 +3,9 @@
 namespace i18nTracker\Mappers;
 
 
+use i18nTracker\MapperFactory;
 use i18nTracker\Models\Bundle;
+use i18nTracker\Models\Language;
 use i18nTracker\Models\Project;
 use Neuron\DB\Query;
 
@@ -12,17 +14,17 @@ class BundleMapper
 
 	/**
 	 * @param Project $project
-	 * @param $language
+	 * @param Language $language
 	 * @return Bundle|null
 	 */
-	public function getFromLanguage (Project $project, $language) {
+	public function getFromLanguage (Project $project, Language $language) {
 		return $this->getSingle (
 			Query::select (
 				'bundles',
 				array ('*'),
 				array (
 					'project_id' => $project->getId (),
-					'bundle_language' => $language
+					'bundle_language' => $language->getToken ()
 				)
 			)->execute ()
 		);
@@ -54,7 +56,7 @@ class BundleMapper
 			'bundles',
 			array (
 				'project_id' => $bundle->getProject ()->getId (),
-				'bundle_language' => $bundle->getLanguage ()
+				'bundle_language' => $bundle->getLanguage ()->getToken ()
 			)
 		)->execute ();
 
@@ -73,7 +75,7 @@ class BundleMapper
 		$bundle = new Bundle ();
 
 		$bundle->setId (intval ($data['bundle_id']));
-		$bundle->setLanguage ($data['bundle_language']);
+		$bundle->setLanguage (MapperFactory::getLanguageMapper ()->getFromToken ($data['bundle_language']));
 
 		return $bundle;
 	}

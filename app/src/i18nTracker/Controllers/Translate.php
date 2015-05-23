@@ -21,15 +21,32 @@ class Translate
 		return Response::template ('listProjects.phpt', array ('projects' => $projects));
 	}
 
-	public function translate ($token)
+	public function selectLanguage ($token)
 	{
 		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
 
 		if (!$project)
 			return Response::error ('Project not found: ' . $token, Response::STATUS_NOTFOUND);
 
-		$original = $project->getBundle ('original');
-		$translation = $project->getBundle ('en');
+		$languages = MapperFactory::getLanguageMapper ()->getAll ();
+
+		$data = array (
+			'project' => $project,
+			'languages' => $languages
+		);
+
+		return Response::template ('selectLanguage.phpt', $data);
+	}
+
+	public function translate ($token, $language)
+	{
+		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
+
+		if (!$project)
+			return Response::error ('Project not found: ' . $token, Response::STATUS_NOTFOUND);
+
+		$original = $project->getBundle (MapperFactory::getLanguageMapper ()->getFromToken ('original'));
+		$translation = $project->getBundle (MapperFactory::getLanguageMapper ()->getFromToken ($language));
 
 		$data = array (
 			'project' => $project,

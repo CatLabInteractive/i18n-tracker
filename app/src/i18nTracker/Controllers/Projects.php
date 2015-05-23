@@ -13,7 +13,7 @@ class Projects
 	public function track ($projectToken) {
 
 		$project = $this->getProject ($projectToken);
-		$language = 'original';
+		$language = MapperFactory::getLanguageMapper ()->getFromToken ('original');
 
 		$bundle = $this->getBundle ($project, $language);
 
@@ -33,6 +33,8 @@ class Projects
 	public function translate ($projectToken, $language) {
 
 		$project = $this->getProject ($projectToken);
+
+		$language = MapperFactory::getLanguageMapper ()->getFromToken ($language);
 		$bundle = MapperFactory::getBundleMapper ()->getFromLanguage ($project, $language);
 
 		$resources = MapperFactory::getResourceMapper ()->getFromBundle ($bundle);

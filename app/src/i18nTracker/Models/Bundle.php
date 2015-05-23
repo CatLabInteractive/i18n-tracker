@@ -19,7 +19,7 @@ class Bundle {
 	/** @var Project */
 	private $project;
 
-	/** @var string */
+	/** @var Language */
 	private $language;
 
 	/**
@@ -32,10 +32,12 @@ class Bundle {
 
 	/**
 	 * @param int $id
+	 * @return Bundle
 	 */
 	public function setId ($id)
 	{
 		$this->id = $id;
+		return $this;
 	}
 
 	/**
@@ -48,14 +50,16 @@ class Bundle {
 
 	/**
 	 * @param Project $project
+	 * @return Bundle
 	 */
 	public function setProject ($project)
 	{
 		$this->project = $project;
+		return $this;
 	}
 
 	/**
-	 * @return string
+	 * @return Language
 	 */
 	public function getLanguage ()
 	{
@@ -63,11 +67,13 @@ class Bundle {
 	}
 
 	/**
-	 * @param string $language
+	 * @param Language $language
+	 * @return Bundle
 	 */
 	public function setLanguage ($language)
 	{
 		$this->language = $language;
+		return $this;
 	}
 
 	public function getResources ()

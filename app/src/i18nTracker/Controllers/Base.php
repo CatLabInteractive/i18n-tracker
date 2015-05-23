@@ -4,6 +4,7 @@ namespace i18nTracker\Controllers;
 
 use i18nTracker\MapperFactory;
 use i18nTracker\Models\Bundle;
+use i18nTracker\Models\Language;
 use i18nTracker\Models\Project;
 use Neuron\Interfaces\Module;
 use Neuron\Interfaces\Controller;
@@ -60,10 +61,10 @@ class Base
 	/**
 	 * Load a bundle from a project, or create a new one in case it doesn't exist.
 	 * @param Project $project
-	 * @param $language
+	 * @param Language $language
 	 * @return Bundle
 	 */
-	protected function getBundle (Project $project, $language) {
+	protected function getBundle (Project $project, Language $language) {
 
 		$bundle = MapperFactory::getBundleMapper ()->getFromLanguage ($project, $language);
 

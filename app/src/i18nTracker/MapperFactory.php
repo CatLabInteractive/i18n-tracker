@@ -54,4 +54,11 @@ class MapperFactory {
 	public static function getResourceMapper () {
 		return self::getInstance ()->getMapper ('resources', 'i18nTracker\Mappers\ResourceMapper');
 	}
+
+	/**
+	 * @return \i18nTracker\Mappers\LanguageMapper
+	 */
+	public static function getLanguageMapper () {
+		return self::getInstance ()->getMapper ('languages', 'i18nTracker\Mappers\LanguageMapper');
+	}
 }

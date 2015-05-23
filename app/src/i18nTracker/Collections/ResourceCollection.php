@@ -3,9 +3,10 @@
 namespace i18nTracker\Collections;
 
 use Neuron\Collections\Collection;
+use Neuron\Collections\ModelCollection;
 
 class ResourceCollection
-	extends Collection {
+	extends ModelCollection {
 
 	public function getFromToken ($token)
 	{

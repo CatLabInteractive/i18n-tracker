@@ -2,7 +2,10 @@
 
 namespace i18nTracker\Models;
 
-class Resource {
+use Neuron\Interfaces\Model;
+
+class Resource
+	implements Model {
 
 	/** @var int */
 	private $id;

@@ -9,7 +9,7 @@
 			<tr>
 				<td style="width: 50%;"><?php echo $entry->getText (); ?></td>
 				<td>
-					<textarea class="form-control" id="entry_<?php echo $entry->getId (); ?>" data-entry-id="<?php echo $entry->getId (); ?>"><?php
+					<textarea class="form-control resource" id="entry_<?php echo $entry->getId (); ?>" data-entry-id="<?php echo $entry->getId (); ?>"><?php
 
 						$translation = $translated->getFromToken ($entry->getToken ());
 						if ($translation) {
@@ -23,3 +23,23 @@
 		<?php } ?>
 	</table>
 </div>
+
+<script>
+	$(document).ready (function () {
+
+		$('textarea.resource').change (function () {
+
+			var id = $(this).attr ('data-entry-id');
+			var value = $(this).val ();
+
+			$.ajax ({
+				'url' : '/translate/<?php echo $project->getToken (); ?>/<?php echo $language->getToken (); ?>/' + id,
+				'method' : 'post',
+				'data' : { 'value' : value },
+				'dataType' : 'json'
+			});
+
+		});
+
+	});
+</script>

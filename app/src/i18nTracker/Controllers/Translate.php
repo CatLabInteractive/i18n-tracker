@@ -51,10 +51,29 @@ class Translate
 		$data = array (
 			'project' => $project,
 			'original' => $original->getResources (),
-			'translated' => $translation->getResources ()
+			'translated' => $translation->getResources (),
+			'language' => $translation->getLanguage ()
 		);
 
 		return Response::template ('translate.phpt', $data);
+	}
+
+	public function setResource ($token, $language, $resourceId)
+	{
+		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
+
+		if (!$project)
+			return Response::error ('Project not found: ' . $token, Response::STATUS_NOTFOUND);
+
+		$original = $project->getBundle (MapperFactory::getLanguageMapper ()->getFromToken ('original'));
+
+		$originalResource = $original->getResources ()->getFromId ($resourceId);
+		if (!$originalResource)
+			return Response::error ('Resource not found: ' . $resourceId, Response::STATUS_NOTFOUND);
+
+
+
+		return Response::json (array ('success' => 1));
 	}
 
 }

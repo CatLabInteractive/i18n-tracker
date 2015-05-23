@@ -9,6 +9,7 @@
 namespace i18nTracker\Models;
 
 
+use i18nTracker\Collections\ResourceCollection;
 use i18nTracker\MapperFactory;
 
 class Bundle {
@@ -21,6 +22,9 @@ class Bundle {
 
 	/** @var Language */
 	private $language;
+
+	/** @var ResourceCollection */
+	private $resources;
 
 	/**
 	 * @return int
@@ -78,7 +82,10 @@ class Bundle {
 
 	public function getResources ()
 	{
-		return MapperFactory::getResourceMapper ()->getFromBundle ($this);
+		if (!isset ($this->resources))
+			$this->resources = MapperFactory::getResourceMapper ()->getFromBundle ($this);
+
+		return $this->resources;
 	}
 
 }

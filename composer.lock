@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "91d11c7694e62f4d659c49c5169d4980",
+    "hash": "d409a5d4bca0bada4041be79a3ea66ce",
     "packages": [
         {
             "name": "catlabinteractive/neuron",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CatLabInteractive/Neuron.git",
-                "reference": "bb02cd4b0f9996c8569b06ec0ce61d5c5eef37b7"
+                "reference": "afc164ad9cf14ec854fdf965972c74b41524c845"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CatLabInteractive/Neuron/zipball/bb02cd4b0f9996c8569b06ec0ce61d5c5eef37b7",
-                "reference": "bb02cd4b0f9996c8569b06ec0ce61d5c5eef37b7",
+                "url": "https://api.github.com/repos/CatLabInteractive/Neuron/zipball/afc164ad9cf14ec854fdf965972c74b41524c845",
+                "reference": "afc164ad9cf14ec854fdf965972c74b41524c845",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-06 12:58:27"
+            "time": "2015-05-23 10:20:38"
         },
         {
             "name": "nesbot/carbon",
@@ -210,6 +210,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-gd": "*"
+    },
     "platform-dev": []
 }

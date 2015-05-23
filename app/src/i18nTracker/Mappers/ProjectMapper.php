@@ -28,6 +28,22 @@ class ProjectMapper
 	}
 
 	/**
+	 * @return array|\mixed[]
+	 */
+	public function getAll ()
+	{
+		return $this->getObjectsFromData (
+			Query::select (
+				'projects',
+				array (
+					'project_id',
+					'project_token'
+				)
+			)->execute ()
+		);
+	}
+
+	/**
 	 * @param Project $project
 	 * @return Project
 	 */

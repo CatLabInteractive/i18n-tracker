@@ -2,6 +2,8 @@
 
 namespace i18nTracker\Models;
 
+use i18nTracker\MapperFactory;
+
 class Project {
 
 	/** @var int */
@@ -40,6 +42,20 @@ class Project {
 	public function setToken ($token)
 	{
 		$this->token = $token;
+	}
+
+	public function getBundle ($language)
+	{
+		$bundle = MapperFactory::getBundleMapper ()->getFromLanguage ($this, $language);
+		if (!$bundle) {
+			$bundle = new Bundle ();
+			$bundle->setLanguage ($language);
+			$bundle->setProject ($this);
+
+			MapperFactory::getBundleMapper ()->create ($bundle);
+		}
+
+		return $bundle;
 	}
 
 	/**

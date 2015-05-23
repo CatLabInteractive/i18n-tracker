@@ -30,6 +30,10 @@ class Module
 
 		$router->get ('/projects/{projectToken}/track', 'i18nTracker\Controllers\Projects@track');
 		$router->get ('/projects/{projectToken}/translate/{language}', 'i18nTracker\Controllers\Projects@translate');
+
+		$router->get ('/', 'i18nTracker\Controllers\Translate@listProjects');
+
+		$router->get ('/translate/{projectToken}', 'i18nTracker\Controllers\Translate@translate');
 	}
 
 }

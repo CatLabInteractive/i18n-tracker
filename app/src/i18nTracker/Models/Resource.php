@@ -143,9 +143,13 @@ class Resource
 
 	public function isEmpty ()
 	{
+		if ($this->getToken () == "")
+			return true;
+
 		foreach ($this->getVariations () as $v)
 		{
-			if ($v->getText () !== null) {
+			$text = $v->getText ();
+			if (!empty ($text)) {
 				return false;
 			}
 		}

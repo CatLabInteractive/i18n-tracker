@@ -80,6 +80,9 @@ class Bundle {
 		return $this;
 	}
 
+	/**
+	 * @return ResourceCollection
+	 */
 	public function getResources ()
 	{
 		if (!isset ($this->resources)) {
@@ -98,19 +101,20 @@ class Bundle {
 
 		foreach ($this->getResources () as $resource)
 		{
-			$tmp = array ();
-			foreach ($resource->getVariations () as $variation)
-			{
-				$tmp[] = array (
-					'n' => $variation->getId (),
-					'text' => $variation->getText ()
+			if (!$resource->isEmpty ()) {
+				$tmp = array ();
+				foreach ($resource->getVariations () as $variation) {
+					$tmp[] = array (
+						'n' => $variation->getId (),
+						'text' => $variation->getText ()
+					);
+				}
+
+				$out['resources'][] = array (
+					'token' => $resource->getToken (),
+					'variations' => $tmp
 				);
 			}
-
-			$out['resources'][] = array (
-				'token' => $resource->getToken (),
-				'variations' => $tmp
-			);
 		}
 
 		return $out;

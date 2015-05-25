@@ -21,7 +21,7 @@ class ResourceMapper
 	/**
 	 * @param Bundle $bundle
 	 * @param $token
-	 * @return Resource|null
+	 * @return \i18nTracker\Models\Resource|null
 	 */
 	public function getFromToken (Bundle $bundle, $token) {
 		return $this->getSingle (
@@ -37,8 +37,8 @@ class ResourceMapper
 	}
 
 	/**
-	 * @param Resource $resource
-	 * @return Resource
+	 * @param \i18nTracker\Models\Resource $resource
+	 * @return \i18nTracker\Models\Resource
 	 */
 	public function touch (Resource $resource) {
 
@@ -60,8 +60,8 @@ class ResourceMapper
 	}
 
 	/**
-	 * @param Resource $resource
-	 * @return Resource
+	 * @param \i18nTracker\Models\Resource $resource
+	 * @return \i18nTracker\Models\Resource
 	 */
 	public function update (Resource $resource) {
 		Query::update (
@@ -80,8 +80,8 @@ class ResourceMapper
 	}
 
 	/**
-	 * @param Resource $resource
-	 * @return Resource
+	 * @param \i18nTracker\Models\Resource $resource
+	 * @return \i18nTracker\Models\Resource
 	 */
 	public function create (Resource $resource) {
 		$id = Query::insert (
@@ -133,6 +133,7 @@ class ResourceMapper
 
 		$resource->setId (intval ($data['resource_id']));
 		$resource->setBundle (MapperFactory::getBundleMapper ()->getFromId ($data['bundle_id']));
+		$resource->setToken ($data['resource_token']);
 
 		if (isset ($data['resource_n'])) {
 			$resource->setN ($data['resource_n']);

@@ -61,4 +61,11 @@ class MapperFactory {
 	public static function getLanguageMapper () {
 		return self::getInstance ()->getMapper ('languages', 'i18nTracker\Mappers\LanguageMapper');
 	}
+
+	/**
+	 * @return \i18nTracker\Mappers\VariationMapper
+	 */
+	public static function getVariationMapper () {
+		return self::getInstance ()->getMapper ('variations', 'i18nTracker\Mappers\VariationMapper');
+	}
 }

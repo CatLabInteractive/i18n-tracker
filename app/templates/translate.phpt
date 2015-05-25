@@ -9,14 +9,18 @@
 			<tr>
 				<td style="width: 50%;"><?php echo $entry->getText (); ?></td>
 				<td>
-					<textarea class="form-control resource" id="entry_<?php echo $entry->getId (); ?>" data-entry-id="<?php echo $entry->getId (); ?>"><?php
-
-						$translation = $translated->getFromToken ($entry->getToken ());
+					<?php
+						$translation = $translated->touchFromOriginal ($entry);
 						if ($translation) {
-							echo $translation->getText ();
-						}
-
-					?></textarea>
+						foreach ($translation->getVariations () as $variation) { ?>
+						<textarea
+							placeholder="<?php echo $variation->getDescription (); ?>"
+							class="form-control resource" id="entry_<?php echo $entry->getId (); ?>_<?php echo $variation->getId (); ?>"
+							data-entry-id="<?php echo $entry->getId (); ?>"
+							data-variation-id="<?php echo $variation->getId (); ?>"><?php
+								echo $variation->getText ();
+						?></textarea>
+					<?php } } ?>
 				</td>
 			</tr>
 
@@ -30,13 +34,15 @@
 		$('textarea.resource').change (function () {
 
 			var id = $(this).attr ('data-entry-id');
+			var variation = $(this).attr ('data-variation-id');
 			var value = $(this).val ();
 
 			$.ajax ({
-				'url' : '/translate/<?php echo $project->getToken (); ?>/<?php echo $language->getToken (); ?>/' + id,
+				'url' : '/translate/<?php echo $project->getToken (); ?>/<?php echo $language->getToken (); ?>/' + id + '/' + variation,
 				'method' : 'post',
-				'data' : { 'value' : value },
-				'dataType' : 'json'
+				'data' : JSON.stringify ({ 'value' : value }),
+				'dataType' : 'json',
+				'contentType' : "application/json"
 			});
 
 		});

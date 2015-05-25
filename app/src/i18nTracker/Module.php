@@ -36,7 +36,9 @@ class Module
 		$router->get ('/translate/{projectToken}', 'i18nTracker\Controllers\Translate@selectLanguage');
 		$router->get ('/translate/{projectToken}/{language}', 'i18nTracker\Controllers\Translate@translate');
 
-		$router->post ('/translate/{projectToken}/{language}/{id}', 'i18nTracker\Controllers\Translate@setResource');
+		$router->post ('/translate/{projectToken}/{language}/{id}/{variation}', 'i18nTracker\Controllers\Translate@setResource');
+
+		$router->get ('/download/{projectToken}/{language}', 'i18nTracker\Controllers\Translate@download');
 	}
 
 }

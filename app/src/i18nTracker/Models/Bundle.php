@@ -82,10 +82,37 @@ class Bundle {
 
 	public function getResources ()
 	{
-		if (!isset ($this->resources))
+		if (!isset ($this->resources)) {
 			$this->resources = MapperFactory::getResourceMapper ()->getFromBundle ($this);
+			$this->resources->setBundle ($this);
+		}
 
 		return $this->resources;
 	}
 
+	public function getData ()
+	{
+		$out = array ();
+
+		$out['resources'] = array ();
+
+		foreach ($this->getResources () as $resource)
+		{
+			$tmp = array ();
+			foreach ($resource->getVariations () as $variation)
+			{
+				$tmp[] = array (
+					'n' => $variation->getId (),
+					'text' => $variation->getText ()
+				);
+			}
+
+			$out['resources'][] = array (
+				'token' => $resource->getToken (),
+				'variations' => $tmp
+			);
+		}
+
+		return $out;
+	}
 }

@@ -80,6 +80,4 @@ class Language {
 		return $this;
 	}
 
-
-
 }

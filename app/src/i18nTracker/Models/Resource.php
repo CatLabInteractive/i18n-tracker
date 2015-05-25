@@ -2,6 +2,8 @@
 
 namespace i18nTracker\Models;
 
+use i18nTracker\Collections\VariationCollection;
+use i18nTracker\MapperFactory;
 use Neuron\Interfaces\Model;
 
 class Resource
@@ -21,6 +23,9 @@ class Resource
 
 	/** @var string */
 	private $text;
+
+	/** @var Variation[] */
+	private $variations;
 
 	/**
 	 * @return int
@@ -103,4 +108,54 @@ class Resource
 	}
 
 
+	public function getVariations ()
+	{
+		if (!isset ($this->variations))
+		{
+			$this->variations = new VariationCollection ();
+
+			if (!$this->getN ()) {
+				$variation = new Variation ();
+				$variation->setId (0);
+				$variation->setText ($this->getText ());
+
+				$this->variations->add ($variation);
+			}
+
+			else {
+				$variation1 = new Variation (1);
+				$variation1->setId (1);
+				$variation1->setText ($this->getText ());
+
+				$variation2 = new Variation (1);
+				$variation2->setId (2);
+				$variation2->setText ($this->getText ());
+
+				$this->variations->add ($variation1);
+				$this->variations->add ($variation2);
+			}
+
+			MapperFactory::getVariationMapper ()->loadFromResource ($this);
+		}
+
+		return $this->variations;
+	}
+
+	public function getData ()
+	{
+		$out = array ();
+
+		$out['id'] = $this->getId ();
+		$out['text'] = $this->getText ();
+
+		$out['variations'] = array ();
+		foreach ($this->getVariations () as $variation) {
+			$out['variations'][] = array (
+				'id' => $variation->getId (),
+				'text' => $variation->getText ()
+			);
+		}
+
+		return $out;
+	}
 }

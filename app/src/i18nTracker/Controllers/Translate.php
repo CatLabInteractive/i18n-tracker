@@ -10,17 +10,25 @@ namespace i18nTracker\Controllers;
 
 
 use i18nTracker\MapperFactory;
+use i18nTracker\Models\Variation;
 use Neuron\Net\Response;
 
 class Translate
 	extends Base {
 
+	/**
+	 * @return Response
+	 */
 	public function listProjects ()
 	{
 		$projects = MapperFactory::getProjectMapper ()->getAll ();
 		return Response::template ('listProjects.phpt', array ('projects' => $projects));
 	}
 
+	/**
+	 * @param string $token
+	 * @return Response
+	 */
 	public function selectLanguage ($token)
 	{
 		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
@@ -38,6 +46,11 @@ class Translate
 		return Response::template ('selectLanguage.phpt', $data);
 	}
 
+	/**
+	 * @param string $token
+	 * @param string $language
+	 * @return Response
+	 */
 	public function translate ($token, $language)
 	{
 		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
@@ -58,7 +71,14 @@ class Translate
 		return Response::template ('translate.phpt', $data);
 	}
 
-	public function setResource ($token, $language, $resourceId)
+	/**
+	 * @param string $token
+	 * @param string $language
+	 * @param int $resourceId
+	 * @param int $variationId
+	 * @return Response
+	 */
+	public function setResource ($token, $language, $resourceId, $variationId)
 	{
 		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
 
@@ -71,9 +91,41 @@ class Translate
 		if (!$originalResource)
 			return Response::error ('Resource not found: ' . $resourceId, Response::STATUS_NOTFOUND);
 
+		$bundle = $project->getBundle (MapperFactory::getLanguageMapper ()->getFromToken ($language));
+		$resource = $bundle->getResources ()->touchFromOriginal ($originalResource);
 
+		$data = $this->request->getData ();
 
-		return Response::json (array ('success' => 1));
+		$value = $data['value'];
+
+		$variation = new Variation ();
+		$variation->setId ($variationId);
+		$variation->setText ($value);
+
+		MapperFactory::getVariationMapper ()->touch ($resource, $variation);
+
+		if ($variation->getId () == 0 || $variation->getId () == 2) {
+			$resource->setText ($variation->getText ());
+			MapperFactory::getResourceMapper ()->touch ($resource);
+		}
+
+		return Response::json ($resource->getData ());
 	}
 
+	/**
+	 * @param string $token
+	 * @param string $language
+	 * @return Response
+	 */
+	public function download ($token, $language)
+	{
+		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
+
+		if (!$project)
+			return Response::error ('Project not found: ' . $token, Response::STATUS_NOTFOUND);
+
+		$bundle = $project->getBundle (MapperFactory::getLanguageMapper ()->getFromToken ($language));
+
+		return Response::json ($bundle->getData ());
+	}
 }

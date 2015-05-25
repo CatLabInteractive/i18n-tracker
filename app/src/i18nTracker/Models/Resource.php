@@ -141,6 +141,17 @@ class Resource
 		return $this->variations;
 	}
 
+	public function isEmpty ()
+	{
+		foreach ($this->getVariations () as $v)
+		{
+			if ($v->getText () !== null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public function getData ()
 	{
 		$out = array ();

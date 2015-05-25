@@ -30,6 +30,7 @@ class Projects
 
 	}
 
+	/*
 	public function translate ($projectToken, $language) {
 
 		$project = $this->getProject ($projectToken);
@@ -41,5 +42,6 @@ class Projects
 		return Response::json ($resources->getData ());
 
 	}
+	*/
 
 }

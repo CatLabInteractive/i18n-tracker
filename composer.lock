@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CatLabInteractive/Neuron.git",
-                "reference": "109701a3374460961956cba4019a179562e7d703"
+                "reference": "06532614c502643155abcd700557ca726e26c710"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CatLabInteractive/Neuron/zipball/109701a3374460961956cba4019a179562e7d703",
-                "reference": "109701a3374460961956cba4019a179562e7d703",
+                "url": "https://api.github.com/repos/CatLabInteractive/Neuron/zipball/06532614c502643155abcd700557ca726e26c710",
+                "reference": "06532614c502643155abcd700557ca726e26c710",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-25 20:02:58"
+            "time": "2015-05-25 20:10:36"
         },
         {
             "name": "nesbot/carbon",

@@ -104,7 +104,7 @@ class Bundle {
 		return true;
 	}
 
-	public function getData ()
+	public function getData ($format = 'json')
 	{
 		$out = array ();
 
@@ -112,12 +112,22 @@ class Bundle {
 		{
 			if (!$resource->isEmpty ()) {
 
-				foreach ($resource->getVariations () as $variation) {
+				switch (strtolower ($format))
+				{
+					case 'polyglot':
+						$txt = '';
+						foreach ($resource->getVariations () as $variation) {
+							$txt .= $variation->getText () . '||||';
+						}
+						$out[$resource->getToken ()] = substr ($txt, 0, -4);
+					break;
 
-					$out[$variation->getToken ($resource)] = $variation->getText ();
-
+					default:
+						foreach ($resource->getVariations () as $variation) {
+							$out[$variation->getToken ($resource)] = $variation->getText ();
+						}
+					break;
 				}
-
 			}
 		}
 

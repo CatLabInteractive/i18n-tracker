@@ -148,6 +148,6 @@ class Translate
 
 		$bundle = $project->getBundle (MapperFactory::getLanguageMapper ()->getFromToken ($language));
 
-		return Response::json ($bundle->getData ());
+		return Response::json ($bundle->getData ($this->request->input ('format')));
 	}
 }

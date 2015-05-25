@@ -58,6 +58,21 @@ class Project {
 		return $bundle;
 	}
 
+	public function getLanguages ()
+	{
+		$languages = MapperFactory::getLanguageMapper ()->getAll ();
+
+		$out = array ();
+		foreach ($languages as $language)
+		{
+			if (!$this->getBundle ($language)->isEmpty ()) {
+				$out[] = $language;
+			}
+		}
+
+		return $out;
+	}
+
 	/**
 	 * @return array
 	 */

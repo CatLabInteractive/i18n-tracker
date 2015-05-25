@@ -12,6 +12,7 @@ namespace i18nTracker\Controllers;
 use i18nTracker\MapperFactory;
 use i18nTracker\Models\Variation;
 use Neuron\Net\Response;
+use Neuron\URLBuilder;
 
 class Translate
 	extends Base {
@@ -110,6 +111,27 @@ class Translate
 		}
 
 		return Response::json ($resource->getData ());
+	}
+
+	public function showLanguages ($token)
+	{
+		$project = MapperFactory::getProjectMapper ()->getFromToken ($token);
+
+		if (!$project)
+			return Response::error ('Project not found: ' . $token, Response::STATUS_NOTFOUND);
+
+		$out = array ();
+
+		foreach ($project->getLanguages () as $language)
+		{
+			$out[] = array (
+				'name' => $language->getName (),
+				'token' => $language->getToken (),
+				'url' => URLBuilder::getAbsoluteURL ('download/' . $token . '/' . $language->getToken ())
+			);
+		}
+
+		return Response::json ($out);
 	}
 
 	/**

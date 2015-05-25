@@ -93,27 +93,31 @@ class Bundle {
 		return $this->resources;
 	}
 
+	public function isEmpty ()
+	{
+		foreach ($this->getResources () as $resource) {
+			if (!$resource->isEmpty ()) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public function getData ()
 	{
 		$out = array ();
 
-		$out['resources'] = array ();
-
 		foreach ($this->getResources () as $resource)
 		{
 			if (!$resource->isEmpty ()) {
-				$tmp = array ();
+
 				foreach ($resource->getVariations () as $variation) {
-					$tmp[] = array (
-						'n' => $variation->getId (),
-						'text' => $variation->getText ()
-					);
+
+					$out[$variation->getToken ($resource)] = $variation->getText ();
+
 				}
 
-				$out['resources'][] = array (
-					'token' => $resource->getToken (),
-					'variations' => $tmp
-				);
 			}
 		}
 

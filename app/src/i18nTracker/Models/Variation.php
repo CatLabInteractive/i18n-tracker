@@ -70,4 +70,15 @@ class Variation
 		return 'Write translation';
 	}
 
+	public function getToken (Resource $resource)
+	{
+		if ($this->getId () == 0 || $this->getId () == 1) {
+			return $resource->getToken ();
+		}
+
+		else if ($this->getId () == 2) {
+			return $resource->getToken () . '_plural';
+		}
+	}
+
 }

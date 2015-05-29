@@ -104,6 +104,11 @@ class Bundle {
 		return true;
 	}
 
+    public function disable ()
+    {
+        MapperFactory::getResourceMapper ()->disable ($this);
+    }
+
 	public function getData ($format = 'json')
 	{
 		$out = array ();

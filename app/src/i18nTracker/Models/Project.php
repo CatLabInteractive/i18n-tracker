@@ -73,6 +73,14 @@ class Project {
 		return $out;
 	}
 
+    /**
+     * Disable all original resources.
+     */
+    public function retrace ()
+    {
+        $this->getBundle ('original')->disable ();
+    }
+
 	/**
 	 * @return array
 	 */

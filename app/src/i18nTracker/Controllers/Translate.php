@@ -37,6 +37,10 @@ class Translate
 		if (!$project)
 			return Response::error ('Project not found: ' . $token, Response::STATUS_NOTFOUND);
 
+        if ($this->request->input ('retrace')) {
+            $project->retrace ();
+        }
+
 		$languages = MapperFactory::getLanguageMapper ()->getAll ();
 
 		$data = array (

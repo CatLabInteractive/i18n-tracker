@@ -12,6 +12,7 @@ namespace i18nTracker\Mappers;
 use i18nTracker\Collections\ResourceCollection;
 use i18nTracker\MapperFactory;
 use i18nTracker\Models\Bundle;
+use i18nTracker\Models\Project;
 use i18nTracker\Models\Resource;
 use Neuron\DB\Query;
 
@@ -69,7 +70,8 @@ class ResourceMapper
 			array (
 				'bundle_id' => $resource->getBundle ()->getId (),
 				'resource_n' => $resource->getN (),
-				'resource_text' => $resource->getText ()
+				'resource_text' => $resource->getText (),
+                'resource_enabled' => 1
 			),
 			array (
 				'resource_id' => $resource->getId ()
@@ -107,12 +109,26 @@ class ResourceMapper
 					'*'
 				),
 				array (
-					'bundle_id' => $bundle->getId ()
+					'bundle_id' => $bundle->getId (),
+                    'resource_enabled' => 1
 				)
 			)->execute ()
 		);
 
 	}
+
+    public function disable (Bundle $project)
+    {
+        Query::update (
+            'resources',
+            array (
+                'resource_enabled' => 0
+            ),
+            array (
+                'bundle_id' => $project->getId ()
+            )
+        )->execute ();
+    }
 
 	/**
 	 * Override this to set an alternative object collection.

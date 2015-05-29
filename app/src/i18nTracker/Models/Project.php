@@ -78,7 +78,7 @@ class Project {
      */
     public function retrace ()
     {
-        $this->getBundle ('original')->disable ();
+        $this->getBundle (MapperFactory::getLanguageMapper ()->getFromToken ('original'))->disable ();
     }
 
 	/**

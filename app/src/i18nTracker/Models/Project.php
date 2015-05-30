@@ -58,14 +58,15 @@ class Project {
 		return $bundle;
 	}
 
-	public function getLanguages ()
+	public function getLanguages ($onlyPublished = false)
 	{
 		$languages = MapperFactory::getLanguageMapper ()->getAll ();
 
 		$out = array ();
 		foreach ($languages as $language)
 		{
-			if (!$this->getBundle ($language)->isEmpty ()) {
+			$bundle = $this->getBundle ($language);
+			if (!$bundle->isEmpty () && (!$onlyPublished || $bundle->isPublished ())) {
 				$out[] = $language;
 			}
 		}

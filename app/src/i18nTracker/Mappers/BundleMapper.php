@@ -76,6 +76,7 @@ class BundleMapper
 
 		$bundle->setId (intval ($data['bundle_id']));
 		$bundle->setLanguage (MapperFactory::getLanguageMapper ()->getFromToken ($data['bundle_language']));
+		$bundle->setPublished ($data['bundle_id'] == 1);
 
 		return $bundle;
 	}

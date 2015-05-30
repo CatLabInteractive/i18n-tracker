@@ -126,7 +126,7 @@ class Translate
 
 		$out = array ();
 
-		foreach ($project->getLanguages () as $language)
+		foreach ($project->getLanguages (true) as $language)
 		{
 			$out[] = array (
 				'name' => $language->getName (),

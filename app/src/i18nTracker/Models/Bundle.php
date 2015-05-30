@@ -26,6 +26,9 @@ class Bundle {
 	/** @var ResourceCollection */
 	private $resources;
 
+	/** @var boolean */
+	private $published;
+
 	/**
 	 * @return int
 	 */
@@ -77,6 +80,24 @@ class Bundle {
 	public function setLanguage ($language)
 	{
 		$this->language = $language;
+		return $this;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isPublished()
+	{
+		return $this->published;
+	}
+
+	/**
+	 * @param boolean $published
+	 * @return self
+	 */
+	public function setPublished($published)
+	{
+		$this->published = $published;
 		return $this;
 	}
 

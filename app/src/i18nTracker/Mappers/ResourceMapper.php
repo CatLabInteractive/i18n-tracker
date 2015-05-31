@@ -12,7 +12,6 @@ namespace i18nTracker\Mappers;
 use i18nTracker\Collections\ResourceCollection;
 use i18nTracker\MapperFactory;
 use i18nTracker\Models\Bundle;
-use i18nTracker\Models\Project;
 use i18nTracker\Models\Resource;
 use Neuron\DB\Query;
 
@@ -25,16 +24,22 @@ class ResourceMapper
 	 * @return \i18nTracker\Models\Resource|null
 	 */
 	public function getFromToken (Bundle $bundle, $token) {
-		return $this->getSingle (
-			Query::select (
-				'resources',
-				array ('*'),
-				array (
-					'bundle_id' => $bundle->getId (),
-					'resource_token' => $token
-				)
-			)->execute ()
-		);
+
+		$query = new Query
+		("
+			SELECT
+				*
+			FROM
+				resources
+			WHERE
+				bundle_id = ? AND
+				BINARY resource_token = ?
+		");
+
+		$query->bindValue (1, $bundle->getId ());
+		$query->bindValue (2, $token);
+
+		return $this->getSingle ($query->execute ());
 	}
 
 	/**

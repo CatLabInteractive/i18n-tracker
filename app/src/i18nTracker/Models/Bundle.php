@@ -150,10 +150,15 @@ class Bundle {
 
 					case 'i18nlite':
 
-						$tmp = array ();
-						foreach ($resource->getVariations () as $variation)
-						{
-							$tmp[$variation->getQuantificationToken ()] = $variation->getText ();
+						if ($resource->getN ()) {
+							$tmp = array ();
+							foreach ($resource->getVariations () as $variation)
+							{
+								$tmp[$variation->getQuantificationToken ()] = $variation->getText ();
+							}
+						}
+						else {
+							$tmp = $resource->getVariations ()->first ()->getText ();
 						}
 
 						$out[$resource->getToken ()] = $tmp;

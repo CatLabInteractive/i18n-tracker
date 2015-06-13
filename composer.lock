@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CatLabInteractive/Neuron.git",
-                "reference": "06532614c502643155abcd700557ca726e26c710"
+                "reference": "7871bb72b2ac44fd5981c94e0a3db6012ff8e0cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CatLabInteractive/Neuron/zipball/06532614c502643155abcd700557ca726e26c710",
-                "reference": "06532614c502643155abcd700557ca726e26c710",
+                "url": "https://api.github.com/repos/CatLabInteractive/Neuron/zipball/7871bb72b2ac44fd5981c94e0a3db6012ff8e0cc",
+                "reference": "7871bb72b2ac44fd5981c94e0a3db6012ff8e0cc",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-25 20:10:36"
+            "time": "2015-05-31 11:03:03"
         },
         {
             "name": "nesbot/carbon",
@@ -99,25 +99,27 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v2.6.7",
-            "target-dir": "Symfony/Component/Translation",
+            "version": "v2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Translation.git",
-                "reference": "398e0eedcb89243ad34a10d079a4b6ea4c0b61ff"
+                "reference": "8349a2b0d11bd0311df9e8914408080912983a0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Translation/zipball/398e0eedcb89243ad34a10d079a4b6ea4c0b61ff",
-                "reference": "398e0eedcb89243ad34a10d079a4b6ea4c0b61ff",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/8349a2b0d11bd0311df9e8914408080912983a0b",
+                "reference": "8349a2b0d11bd0311df9e8914408080912983a0b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
+            },
+            "conflict": {
+                "symfony/config": "<2.7"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.3,>=2.3.12",
+                "symfony/config": "~2.7",
                 "symfony/intl": "~2.3",
                 "symfony/phpunit-bridge": "~2.7",
                 "symfony/yaml": "~2.2"
@@ -130,11 +132,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Symfony\\Component\\Translation\\": ""
                 }
             },
@@ -154,22 +156,22 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2015-05-05 16:51:00"
+            "time": "2015-06-11 17:26:34"
         }
     ],
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v68",
+            "version": "v69",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "04a7e4f82914744b261d7bae866c85926404964c"
+                "reference": "402c26919e848f7c7a78b754db41dc3c1c841ff0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/04a7e4f82914744b261d7bae866c85926404964c",
-                "reference": "04a7e4f82914744b261d7bae866c85926404964c",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/402c26919e848f7c7a78b754db41dc3c1c841ff0",
+                "reference": "402c26919e848f7c7a78b754db41dc3c1c841ff0",
                 "shasum": ""
             },
             "bin": [
@@ -200,7 +202,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-05-18 14:24:40"
+            "time": "2015-06-12 00:59:11"
         }
     ],
     "aliases": [],

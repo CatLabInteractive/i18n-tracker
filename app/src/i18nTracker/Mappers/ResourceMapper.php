@@ -33,7 +33,7 @@ class ResourceMapper
 				resources
 			WHERE
 				bundle_id = ? AND
-				BINARY resource_token = ?
+				resource_token = ?
 		");
 
 		$query->bindValue (1, $bundle->getId ());

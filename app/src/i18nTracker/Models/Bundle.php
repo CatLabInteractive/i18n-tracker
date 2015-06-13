@@ -178,7 +178,7 @@ class Bundle {
 			case 'i18nlite':
 				return array (
 					'language' => $this->getLanguage ()->getData (),
-					'resoures' => $out
+					'resources' => $out
 				);
 			break;
 

@@ -153,7 +153,7 @@ class Bundle {
 						$tmp = array ();
 						foreach ($resource->getVariations () as $variation)
 						{
-							$tmp[] = $variation->getQuantificationToken ();
+							$tmp[$variation->getQuantificationToken ()] = $variation->getText ();
 						}
 
 						$out[$resource->getToken ()] = $tmp;

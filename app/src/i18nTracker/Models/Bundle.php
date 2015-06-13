@@ -148,6 +148,17 @@ class Bundle {
 						$out[$resource->getToken ()] = substr ($txt, 0, -4);
 					break;
 
+					case 'i18nlite':
+
+						$tmp = array ();
+						foreach ($resource->getVariations () as $variation)
+						{
+							$tmp[] = $variation->getQuantificationToken ();
+						}
+
+						$out[$resource->getToken ()] = $tmp;
+					break;
+
 					default:
 						foreach ($resource->getVariations () as $variation) {
 							$out[$variation->getToken ($resource)] = $variation->getText ();

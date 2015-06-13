@@ -79,6 +79,24 @@ class Variation
 		else if ($this->getId () == 2) {
 			return $resource->getToken () . '_plural';
 		}
+
+		else {
+			return $resource->getToken () . '_' . $this->getId ();
+		}
+	}
+
+	/**
+	 * @todo more complex langauges.
+	 * @return string
+	 */
+	public function getQuantificationToken ()
+	{
+		if ($this->getId () == 0 || $this->getId () == 1) {
+			return 'single';
+		}
+		else {
+			return 'plural';
+		}
 	}
 
 }

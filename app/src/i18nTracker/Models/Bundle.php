@@ -168,6 +168,17 @@ class Bundle {
 			}
 		}
 
-		return $out;
+		switch (strtolower ($format))
+		{
+			case 'i18nlite':
+				return array (
+					'language' => $this->getLanguage ()->getData (),
+					'resoures' => $out
+				);
+			break;
+
+			default:
+				return $out;
+		}
 	}
 }

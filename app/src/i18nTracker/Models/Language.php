@@ -80,4 +80,11 @@ class Language {
 		return $this;
 	}
 
+	public function getData ()
+	{
+		return array (
+			'locale' => $this->getToken (),
+			'name' => $this->getName ()
+		);
+	}
 }

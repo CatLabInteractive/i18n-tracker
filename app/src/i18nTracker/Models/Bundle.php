@@ -152,7 +152,7 @@ class Bundle {
 					case 'polyglot':
 						$txt = '';
 						foreach ($resource->getVariations () as $variation) {
-							$txt .= $variation->getText () . '||||';
+							$txt .= $this->trim($variation->getText()) . '||||';
 						}
 						$out[$resource->getToken ()] = substr ($txt, 0, -4);
 					break;
@@ -175,7 +175,7 @@ class Bundle {
 
 					default:
 						foreach ($resource->getVariations () as $variation) {
-							$out[$variation->getToken ($resource)] = $variation->getText ();
+							$out[$variation->getToken ($resource)] = $this->trim($variation->getText ());
 						}
 					break;
 				}

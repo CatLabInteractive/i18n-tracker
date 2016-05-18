@@ -130,6 +130,15 @@ class Bundle {
         MapperFactory::getResourceMapper ()->disable ($this);
     }
 
+	/**
+	 * @param string $text
+	 * @return string
+	 */
+	private function trim($text)
+	{
+		return str_replace('\\u0000', '', trim($text));
+	}
+
 	public function getData ($format = 'json')
 	{
 		$out = array ();
@@ -154,11 +163,11 @@ class Bundle {
 							$tmp = array ();
 							foreach ($resource->getVariations () as $variation)
 							{
-								$tmp[$variation->getQuantificationToken ()] = trim($variation->getText ());
+								$tmp[$variation->getQuantificationToken ()] = $this->trim($variation->getText ());
 							}
 						}
 						else {
-							$tmp = trim($resource->getVariations ()->first ()->getText ());
+							$tmp = $this->trim($resource->getVariations ()->first ()->getText ());
 						}
 
 						$out[$resource->getToken ()] = $tmp;

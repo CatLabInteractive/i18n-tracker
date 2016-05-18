@@ -163,7 +163,7 @@ class Bundle {
 							$tmp = array ();
 							foreach ($resource->getVariations () as $variation)
 							{
-								$tmp[$variation->getQuantificationToken ()] = $this->trim($variation->getText ());
+								$tmp[$this->trim($variation->getQuantificationToken ())] = $this->trim($variation->getText ());
 							}
 						}
 						else {

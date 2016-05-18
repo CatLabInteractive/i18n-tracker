@@ -154,7 +154,7 @@ class Bundle {
 						foreach ($resource->getVariations () as $variation) {
 							$txt .= $this->trim($variation->getText()) . '||||';
 						}
-						$out[$resource->getToken ()] = substr ($txt, 0, -4);
+						$out[$this->trim($resource->getToken ())] = substr ($txt, 0, -4);
 					break;
 
 					case 'i18nlite':
@@ -170,12 +170,12 @@ class Bundle {
 							$tmp = $this->trim($resource->getVariations ()->first ()->getText ());
 						}
 
-						$out[$resource->getToken ()] = $tmp;
+						$out[$this->trim($resource->getToken ())] = $tmp;
 					break;
 
 					default:
 						foreach ($resource->getVariations () as $variation) {
-							$out[$variation->getToken ($resource)] = $this->trim($variation->getText ());
+							$out[$this->trim($variation->getToken ($resource))] = $this->trim($variation->getText ());
 						}
 					break;
 				}
